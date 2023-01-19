@@ -25,6 +25,6 @@ public class Door : MonoBehaviour
     void CloseDoor()
     {
         transform.rotation = Quaternion.Slerp(transform.rotation,
-            Quaternion.Euler(transform.rotation.x, closeDoor, transform.rotation.z), speed * Time.deltaTime);
+            Quaternion.Euler(transform.rotation.x, closeDoor, transform.rotation.z), 2* speed * Time.deltaTime);
     }
 }
