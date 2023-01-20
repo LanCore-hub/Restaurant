@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 3440
     height: 1357
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 442}
   m_MaxSize: {x: 22006, y: 10021}
   vertical: 0
-  controlID: 67
+  controlID: 19
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 442}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 68
+  controlID: 72
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -406,9 +406,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 44.599525, y: -1.0270572, z: 39.981506}
+    m_Target: {x: 54.503063, y: -4.5593157, z: 49.38856}
     speed: 2
-    m_Value: {x: 44.599525, y: -1.0270572, z: 39.981506}
+    m_Value: {x: 54.503063, y: -4.5593157, z: 49.38856}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -455,13 +455,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.29130834, y: 0.10307722, z: -0.031425223, w: -0.950711}
+    m_Target: {x: 0.29838595, y: -0.046297673, z: 0.014532766, w: 0.95341283}
     speed: 2
-    m_Value: {x: -0.29126108, y: 0.1030605, z: -0.031420127, w: -0.9505568}
+    m_Value: {x: 0.29832855, y: -0.046288766, z: 0.0145299705, w: 0.9532294}
   m_Size:
-    m_Target: 6.9753447
+    m_Target: 7.2303715
     speed: 2
-    m_Value: 6.9753447
+    m_Value: 7.2303715
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -575,8 +575,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 02100000
-      m_LastClickedID: 0
+      m_SelectedIDs: c23d0000
+      m_LastClickedID: 15810
       m_ExpandedIDs: 70fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -647,14 +647,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scripts
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\Zver\My project (3)
+  m_LastProjectPath: C:\Users\Zver\Restaurant\My project (3)
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a83e0000
-    m_LastClickedID: 16040
-    m_ExpandedIDs: 00000000943e000000ca9a3b
+    m_SelectedIDs: 043f0000
+    m_LastClickedID: 16132
+    m_ExpandedIDs: 00000000ec3e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -682,7 +682,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000943e0000
+    m_ExpandedIDs: 00000000ec3e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
