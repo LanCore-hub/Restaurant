@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && FullInventory == true) // поставить предмет на тумбочку
+        if (Input.GetKeyDown(KeyCode.X) && FullInventory == true) // поставить предмет на тумбочку..
         {
             if (tumbochkaScript.CanPut == true)
             {
