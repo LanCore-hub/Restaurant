@@ -10,7 +10,7 @@ public class BasketScript : MonoBehaviour
     public GameObject srednee;
     public GameObject big;
 
-    private GameObject ObjectToBasket;
+    public GameObject ObjectToBasket;
 
     public bool CanThrowAway;
     private int KolInBasket;
@@ -59,9 +59,11 @@ public class BasketScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && KolInBasket < 3 && playerController.Subject[0].tag != "Plate")
+        if (other.gameObject.CompareTag("Player") && KolInBasket < 3 && playerController.FullInventory == true && !playerController.Subject[0].CompareTag("Plate"))
+        {
             CanThrowAway = true;
-        else
+        }
+        else if (playerController.FullInventory == false)
             CanThrowAway = false;
     }
 

@@ -35,7 +35,7 @@ public class Tumbochka : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && playerController.FullInventory == true && ObjectsOnTumbochka.Count == 0) // Если на столе ничего не лежит и инвентарь игрока полный
+        if (ObjectsOnTumbochka.Count == 0 && playerController.FullInventory == true) // Если на столе ничего не лежит и инвентарь игрока полный
         {
             CanPut = true;
         }
@@ -45,9 +45,9 @@ public class Tumbochka : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Player") && playerController.FullInventory == true && ObjectsOnTumbochka.Count > 0)
         {
-            if (ObjectsOnTumbochka[0].tag == "Plate")
+            if (ObjectsOnTumbochka[0].CompareTag("Plate"))
                 CheckTrueTag();
-            else if (playerController.Subject[0].tag == "Plate")
+            else if (playerController.Subject[0].CompareTag("Plate"))
                 CheckTrueTag();
             else
                 CanPut = false;
