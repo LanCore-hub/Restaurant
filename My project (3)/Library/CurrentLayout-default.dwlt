@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 3440
     height: 1357
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 492}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 3440
     height: 1357
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 492}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 442}
   m_MaxSize: {x: 22006, y: 10021}
   vertical: 0
-  controlID: 19
+  controlID: 129
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 442}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 72
+  controlID: 130
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -337,7 +337,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 0
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
       y: 21
       width: 1513
       height: 736
-    m_Scale: {x: 0.6814815, y: 0.6814815}
+    m_Scale: {x: 0.70092595, y: 0.700926}
     m_Translation: {x: 756.5, y: 368}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -358,12 +358,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1110.0815
-      y: -540
-      width: 2220.163
-      height: 1080
+      x: -1079.2866
+      y: -525.0198
+      width: 2158.5732
+      height: 1050.0396
     m_MinimalGUI: 1
-  m_defaultScale: 0.6814815
+  m_defaultScale: 0.70092595
   m_LastWindowPixelSize: {x: 1513, y: 757}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
@@ -406,9 +406,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 54.503063, y: -4.5593157, z: 49.38856}
+    m_Target: {x: 62.24402, y: -13.546401, z: 26.91144}
     speed: 2
-    m_Value: {x: 54.503063, y: -4.5593157, z: 49.38856}
+    m_Value: {x: 62.24402, y: -13.546401, z: 26.91144}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -455,13 +455,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.29838595, y: -0.046297673, z: 0.014532766, w: 0.95341283}
+    m_Target: {x: 0.44512916, y: 0.5260472, z: -0.37915054, w: 0.6180526}
     speed: 2
-    m_Value: {x: 0.29832855, y: -0.046288766, z: 0.0145299705, w: 0.9532294}
+    m_Value: {x: 0.44512916, y: 0.5260472, z: -0.3791505, w: 0.6180526}
   m_Size:
-    m_Target: 7.2303715
+    m_Target: 9.544862
     speed: 2
-    m_Value: 7.2303715
+    m_Value: 9.544862
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -575,8 +575,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c23d0000
-      m_LastClickedID: 15810
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: 70fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -639,22 +639,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Zver\Restaurant\My project (3)
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 043f0000
-    m_LastClickedID: 16132
-    m_ExpandedIDs: 00000000ec3e000000ca9a3b
+    m_SelectedIDs: 44400000
+    m_LastClickedID: 16452
+    m_ExpandedIDs: 000000002e40000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -682,7 +682,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ec3e0000
+    m_ExpandedIDs: 000000002e400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -709,7 +709,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 644400006c430000d6440000e6590000e24700000a480000c27e000000000000066f0000704500008c450000549b00007a5700007a450000145d0000481101007c100100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
