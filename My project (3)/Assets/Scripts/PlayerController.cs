@@ -11,32 +11,36 @@ public class PlayerController : MonoBehaviour
     private float gravity = -9.0f;
     Vector3 velocity;
 
-    [Header("Действия с предметами")]
-    public bool CanTake; //Взять предмет
-    public bool CanTakeFood; //Взять пердмет со спавнера
-    public GameObject[] Subject; // Какой предмет в инвентаре
-    public bool FullInventory; //Есть ли в инвентаре предмет?
-    public GameObject isObject; //Предмет который можно взять с земли
-    public Transform transformSubject; //Место, где будет нести игрок предмет
+    [Header("Взаимодействия с предметами")]
+    public Transform HandsPlayer; //Позиция рук игрока
+    public List<GameObject> SubjectsAtHandsPlayer; //Список предметов в руках игрока
+    public GameObject isObject; //Предмет лежит на земле
+    public bool FullInventory; // Полный ли инвентарь
+    public bool CanTake; //Может ли взять лежачий предмет
 
-    [Header("Посторонние скрипты")]
-    public Tumbochka tumbochkaScript;
-    public FridgeScript fridgeScript;
-    public BasketScript basketScript;
+    [Header("Возможность брать предметы со спавнеров")]
+    public bool CanTakeSubjectFromSpawner;
+    public GameObject Steak;
 
+    [Header("Возможность поставить предмет на тумбочку")]
+    public bool CanTakeSubjectOnTumbochka;
+    public Transform isObjectTumbochka;
     void Start()
     {
         rotationspeed = 7f;
         CanTake = false;
-        CanTakeFood = false;
-        FullInventory = false;
+        CanTakeSubjectFromSpawner = false;
+        CanTakeSubjectOnTumbochka = false;
+        CheckFullInventory();
     }
 
     void Update()
     {
         Controller(); // Управление
-        PutOnSubject();
-        TakeSubjectFromSpawner();
+        CheckFullInventory(); // Проверка полный ли инвентарь
+        CanTakeSubject(); // Возможность взять предмет
+        TakeSubjectsFromSpawner(); // Возможность брать предметы со спавнеров
+        PutOnTumbochka(); // Возможность ставить предметы на тумпочку
     }
 
     // Управление
@@ -56,73 +60,104 @@ public class PlayerController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    private void PutOnSubject()
+    //Возможность брать предметы
+    private void CanTakeSubject()
     {
-        if (Input.GetKeyDown(KeyCode.E) && CanTake == true) //Возможность взять лежачий предмет с пола
+        if (Input.GetKeyDown(KeyCode.E) && CanTake == true && FullInventory == false)
         {
-            Subject[0] = isObject;
-            isObject = null;
-            FullInventory = true;
-        }
-
-        if (FullInventory == true)
-        {
-            Subject[0].transform.position = transformSubject.position;
-            if (Subject[0].CompareTag("Meat"))
-            {
-                Subject[0].transform.rotation = transformSubject.rotation;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.X) && FullInventory == true) // поставить предмет на тумбочку
-        {
-            if (tumbochkaScript.CanPut == true)
-            {
-                Subject[0].transform.position = tumbochkaScript.onTumbochka.position; // Перемещение предмета на стол
-                tumbochkaScript.ObjectsOnTumbochka.Add(Subject[0]);
-                FullInventory = false;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.X) && basketScript.CanThrowAway == true) //Возможность кинуть предмет в мусорку
-        {
-            basketScript.CheckFullBasket();
-            FullInventory = false;
+            SubjectsAtHandsPlayer.Add(isObject);
         }
     }
 
-    private void TakeSubjectFromSpawner()
+    //Возможность брать предметы со спавнеров
+    private void TakeSubjectsFromSpawner()
     {
-        if (Input.GetKeyDown(KeyCode.E) && CanTakeFood == true) // Взять еду со спавнера
+        if (Input.GetKeyDown(KeyCode.E) && CanTakeSubjectFromSpawner == true && FullInventory == false)
         {
-            Subject[0] = Instantiate(fridgeScript.Steak);
+            isObject = Instantiate(Steak);
+            SubjectsAtHandsPlayer.Add(isObject);
+        }
+    }
+
+    //Возможность ставить предметы на тумбочку
+    private void PutOnTumbochka()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && CanTakeSubjectOnTumbochka == true && FullInventory == true)
+        {
+            SubjectsAtHandsPlayer[0].transform.position = isObjectTumbochka.transform.position;
+            SubjectsAtHandsPlayer.Clear();
+        }
+    }
+
+    //TODO: Проверка на то, какие предметы стоят на тумбочке
+    
+
+    // Проверка полный ли инвентарь
+    private void CheckFullInventory()
+    {
+        if (SubjectsAtHandsPlayer.Count == 1)
+        {
+            SubjectsAtHandsPlayer[0].transform.position = HandsPlayer.transform.position;
+            if (SubjectsAtHandsPlayer[0].CompareTag("Meat"))
+            {
+                SubjectsAtHandsPlayer[0].transform.rotation = HandsPlayer.transform.rotation;
+            }
             FullInventory = true;
         }
+        else
+            FullInventory = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if ((other.gameObject.CompareTag("Meat") || other.gameObject.CompareTag("Plate")) && FullInventory == false)
+        if (other.gameObject.CompareTag("Plate") && FullInventory == false)
         {
             CanTake = true;
             isObject = other.gameObject;
         }
-        else if ((other.gameObject.CompareTag("Meat") || other.gameObject.CompareTag("Plate")) && FullInventory == true)
-        {
-            CanTake = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if ((other.gameObject.CompareTag("Meat") || other.gameObject.CompareTag("Plate")) && FullInventory == false)
+        else if (FullInventory == true)
         {
             CanTake = false;
             isObject = null;
         }
-        else if ((other.gameObject.CompareTag("Meat") || other.gameObject.CompareTag("Plate")) && FullInventory == true)
+            
+        if (other.gameObject.CompareTag("Fridge") && FullInventory == false) // Если игрок стоит у холодильника
+        {
+            CanTakeSubjectFromSpawner = true;
+        }
+        else if (FullInventory == true)
+        {
+            CanTakeSubjectFromSpawner = false;
+            isObject = null;
+        }
+
+        if (other.gameObject.CompareTag("Tumbochka") && FullInventory == true) // Если игрок стоит у тумбочки
+        {
+            CanTakeSubjectOnTumbochka = true;
+            isObjectTumbochka.position = new Vector3(other.transform.position.x, other.transform.position.y + 0.6f, other.transform.position.z);
+        }
+        else if (FullInventory == false)
+            CanTakeSubjectOnTumbochka = false;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Plate"))
         {
             CanTake = false;
+            isObject = null;
+        }
+
+        if (other.gameObject.CompareTag("Fridge"))
+        {
+            CanTakeSubjectFromSpawner = false;
+            isObject = null;
+        }
+
+        if (other.gameObject.CompareTag("Tumbochka"))
+        {
+            CanTakeSubjectOnTumbochka = false;
+            isObject = null;
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Fridge
   - Plate
   - Meat
+  - Tumbochka
   layers:
   - Default
   - TransparentFX
