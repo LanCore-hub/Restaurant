@@ -138,8 +138,15 @@ public class PlayerController : MonoBehaviour
             CanTakeSubjectOnTumbochka = true;
             isObjectTumbochka.position = new Vector3(other.transform.position.x, other.transform.position.y + 0.6f, other.transform.position.z);
             Tumbochka = other.gameObject;
-            Tumbochka.GetComponent<TumbochkaScript>().playerController = SubjectsAtHandsPlayer[0];
-            
+            Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
+            try
+            {
+                Tumbochka.GetComponent<TumbochkaScript>().playerController = SubjectsAtHandsPlayer[0]; //Œÿ»¡ ¿
+            }
+            catch
+            {
+            }
+            Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
             if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 0)
                 Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
             else if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 1)
