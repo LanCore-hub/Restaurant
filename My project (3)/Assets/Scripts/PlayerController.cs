@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [Header("Возможность поставить предмет на тумбочку")]
     public bool CanTakeSubjectOnTumbochka;
     public Transform isObjectTumbochka;
+    public GameObject Tumbochka;
     void Start()
     {
         rotationspeed = 7f;
@@ -82,9 +83,10 @@ public class PlayerController : MonoBehaviour
     //Возможность ставить предметы на тумбочку
     private void PutOnTumbochka()
     {
-        if (Input.GetKeyDown(KeyCode.E) && CanTakeSubjectOnTumbochka == true && FullInventory == true)
+        if (Input.GetKeyDown(KeyCode.E) && CanTakeSubjectOnTumbochka == true && FullInventory == true && Tumbochka.GetComponent<TumbochkaScript>().CanPut == true)
         {
             SubjectsAtHandsPlayer[0].transform.position = isObjectTumbochka.transform.position;
+            Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Add(SubjectsAtHandsPlayer[0]);
             SubjectsAtHandsPlayer.Clear();
         }
     }
@@ -135,6 +137,15 @@ public class PlayerController : MonoBehaviour
         {
             CanTakeSubjectOnTumbochka = true;
             isObjectTumbochka.position = new Vector3(other.transform.position.x, other.transform.position.y + 0.6f, other.transform.position.z);
+            Tumbochka = other.gameObject;
+            Tumbochka.GetComponent<TumbochkaScript>().playerController = SubjectsAtHandsPlayer[0];
+            
+            if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 0)
+                Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
+            else if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 1)
+                Tumbochka.GetComponent<TumbochkaScript>().CheckPlateTag();
+            else
+                Tumbochka.GetComponent<TumbochkaScript>().CheckSubjectsTag();
         }
         else if (FullInventory == false)
             CanTakeSubjectOnTumbochka = false;
@@ -158,6 +169,7 @@ public class PlayerController : MonoBehaviour
         {
             CanTakeSubjectOnTumbochka = false;
             isObject = null;
+            Tumbochka = null;
         }
     }
 }
