@@ -10,6 +10,7 @@ TagManager:
   - Plate
   - Meat
   - Tumbochka
+  - Rubbish
   layers:
   - Default
   - TransparentFX
