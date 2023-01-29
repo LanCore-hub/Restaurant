@@ -26,12 +26,19 @@ public class PlayerController : MonoBehaviour
     public bool CanTakeSubjectOnTumbochka;
     public Transform isObjectTumbochka;
     public GameObject Tumbochka;
+
+    [Header("Взаимодействие с тарелкой")]
+    public GameObject Plate;
+
+    [Header("Возможность взять предмет с тумбочки")]
+    public bool CanVziatSubjectWithTumbochka;
     void Start()
     {
         rotationspeed = 7f;
         CanTake = false;
         CanTakeSubjectFromSpawner = false;
         CanTakeSubjectOnTumbochka = false;
+        CanVziatSubjectWithTumbochka = false;
         CheckFullInventory();
     }
 
@@ -64,7 +71,21 @@ public class PlayerController : MonoBehaviour
     //Возможность брать предметы
     private void CanTakeSubject()
     {
-        if (Input.GetKeyDown(KeyCode.E) && CanTake == true && FullInventory == false)
+        if (Input.GetKeyDown(KeyCode.E) && FullInventory == false && CanVziatSubjectWithTumbochka == true)
+        {
+            if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 1)
+                SubjectsAtHandsPlayer.Add(Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0]);
+            else if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 2)
+            {
+                if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0].CompareTag("Plate"))
+                    SubjectsAtHandsPlayer.Add(Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0]);
+                else
+                    SubjectsAtHandsPlayer.Add(Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[1]);
+            }
+            Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Clear();
+            CanVziatSubjectWithTumbochka = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && CanTake == true && FullInventory == false && CanVziatSubjectWithTumbochka == false)
         {
             SubjectsAtHandsPlayer.Add(isObject);
         }
@@ -88,6 +109,20 @@ public class PlayerController : MonoBehaviour
             SubjectsAtHandsPlayer[0].transform.position = isObjectTumbochka.transform.position;
             Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Add(SubjectsAtHandsPlayer[0]);
             SubjectsAtHandsPlayer.Clear();
+
+            if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count > 1)
+            {
+                if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0].CompareTag("Plate"))
+                {
+                    Plate = Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0];
+                    Plate.GetComponent<PlateScript>().dish.Add(Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[1]);
+                }
+                else
+                {
+                    Plate = Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[1];
+                    Plate.GetComponent<PlateScript>().dish.Add(Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0]);
+                }
+            }
         }
     }
 
@@ -142,20 +177,74 @@ public class PlayerController : MonoBehaviour
             try
             {
                 Tumbochka.GetComponent<TumbochkaScript>().playerController = SubjectsAtHandsPlayer[0]; //ОШИБКА
+
+                Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
+                if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 0)
+                    Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
+                else if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 1)
+                {
+                    Tumbochka.GetComponent<TumbochkaScript>().CheckPlateTag();
+                }
+                else
+                {
+                    if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0].CompareTag("Plate"))
+                    {
+                        Plate = Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0];
+                        int FALSE = 0;
+                        foreach (GameObject Food in Plate.GetComponent<PlateScript>().dish)
+                        {
+                            if (Food.tag == SubjectsAtHandsPlayer[0].tag || SubjectsAtHandsPlayer[0].CompareTag("Plate"))
+                                FALSE++;
+
+                            if (FALSE == 1)
+                            {
+                                Tumbochka.GetComponent<TumbochkaScript>().CanPut = false;
+                                break;
+                            }
+                        }
+                        if (FALSE == 0)
+                            Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
+                    }
+                    else
+                    {
+                        if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[1].CompareTag("Plate"))
+                        {
+                            Plate = Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[1];
+                            int FALSE = 0;
+                            foreach (GameObject Food in Plate.GetComponent<PlateScript>().dish)
+                            {
+                                if (Food.tag == SubjectsAtHandsPlayer[0].tag || SubjectsAtHandsPlayer[0].CompareTag("Plate"))
+                                    FALSE++;
+
+                                if (FALSE == 1)
+                                {
+                                    Tumbochka.GetComponent<TumbochkaScript>().CanPut = false;
+                                    break;
+                                }
+                            }
+                            if (FALSE == 0)
+                                Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
+                        }
+                    }
+                }
             }
             catch
             {
             }
-            Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
-            if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 0)
-                Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
-            else if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 1)
-                Tumbochka.GetComponent<TumbochkaScript>().CheckPlateTag();
+        }
+        else if (FullInventory == false && other.gameObject.CompareTag("Tumbochka"))
+        {
+            Tumbochka = other.gameObject;
+            if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count > 0)
+                CanVziatSubjectWithTumbochka = true;
             else
-                Tumbochka.GetComponent<TumbochkaScript>().CheckSubjectsTag();
+                CanVziatSubjectWithTumbochka = false;
         }
         else if (FullInventory == false)
+        {
             CanTakeSubjectOnTumbochka = false;
+            CanVziatSubjectWithTumbochka = false;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -175,6 +264,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Tumbochka"))
         {
             CanTakeSubjectOnTumbochka = false;
+            CanVziatSubjectWithTumbochka = false;
             isObject = null;
             Tumbochka = null;
         }
