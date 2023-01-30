@@ -181,11 +181,11 @@ public class PlayerController : MonoBehaviour
                 Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
                 if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 0)
                     Tumbochka.GetComponent<TumbochkaScript>().CanPut = true;
-                else if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 1)
+                else if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count == 1 && !SubjectsAtHandsPlayer[0].CompareTag("Rubbish") && !Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0].CompareTag("Rubbish"))
                 {
                     Tumbochka.GetComponent<TumbochkaScript>().CheckPlateTag();
                 }
-                else
+                else if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka.Count > 1 && !SubjectsAtHandsPlayer[0].CompareTag("Rubbish") && !Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0].CompareTag("Rubbish"))
                 {
                     if (Tumbochka.GetComponent<TumbochkaScript>().SubjectsOnTumbochka[0].CompareTag("Plate"))
                     {
@@ -227,6 +227,8 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                 }
+                else
+                    Tumbochka.GetComponent<TumbochkaScript>().CanPut = false;
             }
             catch
             {

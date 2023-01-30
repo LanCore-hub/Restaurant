@@ -104,6 +104,8 @@ public class BasketScript : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             CanTake = false;
+            CanTakeButton = false;
+            CanPutButton = false;
             CanPut = false;
             controller.isObject = null;
         }
