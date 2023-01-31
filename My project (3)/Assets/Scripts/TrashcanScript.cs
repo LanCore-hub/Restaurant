@@ -16,18 +16,23 @@ public class TrashcanScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && CanPutButton == true)
+        try
         {
-            Destroy(controller.SubjectsAtHandsPlayer[0]);
-            controller.SubjectsAtHandsPlayer.Clear();
+            if (Input.GetKeyDown(KeyCode.E) && CanPutButton == true)
+            {
+                Destroy(controller.SubjectsAtHandsPlayer[0]);
+                controller.SubjectsAtHandsPlayer.Clear();
+
+            }
         }
+        catch { }
     }
 
     private void OnTriggerStay(Collider other)
     {
         try
         {
-            if (other.gameObject.CompareTag("Player") && controller.SubjectsAtHandsPlayer[0].CompareTag("Rubbish"))
+            if (other.gameObject.CompareTag("Player") && controller.SubjectsAtHandsPlayer[0].CompareTag("Rubbish") && controller.FullInventory == true)
             {
                 CanPutButton = true;
             }

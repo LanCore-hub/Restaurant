@@ -6,8 +6,9 @@ public class BasketScript : MonoBehaviour
 {
     public PlayerController controller;
     public GameObject Rubbish;
-    public bool CanPut, CanPutButton;//Положить
+    public bool CanPut, CanPutButton, CanPutButtonPlate;//Положить
     public bool CanTake, CanTakeButton;//Взять
+
     public GameObject small;
     public GameObject medium;
     public GameObject big;
@@ -21,6 +22,7 @@ public class BasketScript : MonoBehaviour
     {
         CanPut = false;
         CanPutButton = false;
+        CanPutButtonPlate = false;
         CanTake = false;
         CanTakeButton = false;
         KolvoRubbishInBasket = 0;
@@ -67,6 +69,33 @@ public class BasketScript : MonoBehaviour
             medium.SetActive(false);
             big.SetActive(false);
         }
+        else if(Input.GetKeyDown(KeyCode.E) && CanPutButtonPlate == true && controller.FullInventory == true)
+        {
+            KolvoRubbishInBasket++;
+            foreach (GameObject Food in controller.SubjectsAtHandsPlayer[0].GetComponent<PlateScript>().dish)
+                Destroy(Food);
+
+            controller.SubjectsAtHandsPlayer[0].GetComponent<PlateScript>().dish.Clear();
+
+            if (KolvoRubbishInBasket == 1)
+            {
+                small.SetActive(true);
+                medium.SetActive(false);
+                big.SetActive(false);
+            }
+            else if (KolvoRubbishInBasket == 2)
+            {
+                small.SetActive(false);
+                medium.SetActive(true);
+                big.SetActive(false);
+            }
+            else if (KolvoRubbishInBasket == 3)
+            {
+                small.SetActive(false);
+                medium.SetActive(false);
+                big.SetActive(true);
+            }
+        }
         
     }
 
@@ -97,6 +126,14 @@ public class BasketScript : MonoBehaviour
         }
         else
             CanTakeButton = false;
+
+        if(other.gameObject.CompareTag("Player") && controller.FullInventory == true && CanPut == true && controller.SubjectsAtHandsPlayer[0].CompareTag("Plate") && controller.SubjectsAtHandsPlayer[0].GetComponent<PlateScript>().dish.Count > 0)
+        {
+            CanPutButtonPlate = true;
+        }
+        else
+            CanPutButtonPlate = false;
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -106,6 +143,7 @@ public class BasketScript : MonoBehaviour
             CanTake = false;
             CanTakeButton = false;
             CanPutButton = false;
+            CanPutButtonPlate = false;
             CanPut = false;
             controller.isObject = null;
         }

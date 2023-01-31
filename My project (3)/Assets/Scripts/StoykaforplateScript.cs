@@ -55,7 +55,7 @@ public class StoykaforplateScript : MonoBehaviour
     {
         try
         {
-            if (other.gameObject.CompareTag("Player") && KolvoPlatesInStoyka < 6 && controller.SubjectsAtHandsPlayer[0].CompareTag("Plate"))
+            if (other.gameObject.CompareTag("Player") && KolvoPlatesInStoyka < 6 && controller.SubjectsAtHandsPlayer[0].CompareTag("Plate") && controller.SubjectsAtHandsPlayer[0].GetComponent<PlateScript>().dish.Count == 0)
                 CanPut = true;
             else
                 CanPut = false;
