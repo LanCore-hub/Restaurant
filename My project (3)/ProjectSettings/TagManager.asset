@@ -11,6 +11,7 @@ TagManager:
   - Meat
   - Tumbochka
   - Rubbish
+  - StoykaForPlates
   layers:
   - Default
   - TransparentFX

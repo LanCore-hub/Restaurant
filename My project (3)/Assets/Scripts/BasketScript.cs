@@ -74,7 +74,7 @@ public class BasketScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && KolvoRubbishInBasket < 3)
             CanPut = true;
-        else if (other.gameObject.CompareTag("Player"))
+        else
             CanPut = false;
 
         if (other.gameObject.CompareTag("Player") && KolvoRubbishInBasket > 0)
