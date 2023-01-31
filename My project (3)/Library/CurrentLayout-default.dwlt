@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 908, y: 563}
   m_MaxSize: {x: 22003, y: 14042}
   vertical: 1
-  controlID: 37
+  controlID: 93
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_MinSize: {x: 908, y: 442}
   m_MaxSize: {x: 22003, y: 10021}
   vertical: 0
-  controlID: 38
+  controlID: 94
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -413,7 +413,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 1
-    m_VSlider: 1
+    m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -426,18 +426,18 @@ MonoBehaviour:
       y: 21
       width: 613
       height: 376
-    m_Scale: {x: 0.35762998, y: 0.35762995}
-    m_Translation: {x: 269.67523, y: 182.87984}
+    m_Scale: {x: 0.3324333, y: 0.3324333}
+    m_Translation: {x: 293.864, y: 188}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -754.06213
-      y: -511.36612
-      width: 1714.0621
-      height: 1051.3661
+      x: -883.9788
+      y: -565.527
+      width: 1843.9789
+      height: 1131.054
     m_MinimalGUI: 1
   m_defaultScale: 0.31927082
   m_LastWindowPixelSize: {x: 613, y: 397}
@@ -482,9 +482,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 52.733627, y: 2.455946, z: 39.339443}
+    m_Target: {x: 55.02556, y: 6.7267575, z: 36.449192}
     speed: 2
-    m_Value: {x: 52.733627, y: 2.455946, z: 39.339443}
+    m_Value: {x: 55.02556, y: 6.7267575, z: 36.449192}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -531,13 +531,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.34463763, y: -0.6535688, z: 0.50542855, w: 0.44579658}
+    m_Target: {x: -0.28154168, y: -0.3016738, z: 0.0936353, w: -0.9061377}
     speed: 2
-    m_Value: {x: 0.34461698, y: -0.65352964, z: 0.5053983, w: 0.44576985}
+    m_Value: {x: -0.28138322, y: -0.3030136, z: 0.094051585, w: -0.9056272}
   m_Size:
-    m_Target: 0.6789483
+    m_Target: 2.153093
     speed: 2
-    m_Value: 0.6789483
+    m_Value: 2.153093
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -650,10 +650,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 16}
       m_SelectedIDs: 64fbffff
       m_LastClickedID: -1180
-      m_ExpandedIDs: 6efbffff70fbffff
+      m_ExpandedIDs: 52f9ffff44fbffff6efbffff70fbfffff63d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -715,22 +715,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Material
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 62
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Material
   m_LastFoldersGridSize: 62
   m_LastProjectPath: C:\Users\Zver\Documents\GitHub\Restaurant\My project (3)
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 76410000
-    m_LastClickedID: 16758
-    m_ExpandedIDs: 000000004a41000000ca9a3b
+    m_SelectedIDs: 70410000
+    m_LastClickedID: 16752
+    m_ExpandedIDs: 000000004a4100007241000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

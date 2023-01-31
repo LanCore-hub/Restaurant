@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
             CanTake = false;
             isObject = null;
         }
-            
+
         if (other.gameObject.CompareTag("Fridge") && FullInventory == false) // Если игрок стоит у холодильника
         {
             CanTakeSubjectFromSpawner = true;
