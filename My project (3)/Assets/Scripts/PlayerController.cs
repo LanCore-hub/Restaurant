@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour
 
     [Header("Возможность взять предмет с тумбочки")]
     public bool CanVziatSubjectWithTumbochka;
+
+    [Header("Прожарка стейка")]
+    public GameObject Steak_Low;
+    public GameObject Steak_Medium;
+    public GameObject Steak_High;
+    public GameObject Steak_Fire;
     void Start()
     {
         rotationspeed = 7f;
